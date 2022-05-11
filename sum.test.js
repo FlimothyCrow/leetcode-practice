@@ -1,4 +1,4 @@
-const { sum, returnTargetIdx } = require("./sum")
+const { sum, returnTargetIdx, replaceElement } = require("./sum")
 
 // describes can nest n deep
 // .only || .skip
@@ -19,5 +19,11 @@ describe("return last element from list", () => {
     })
     test("should return error for out-of-length index", () => {
         expect(returnTargetIdx([1, 2, 3], 8)).toBe("error")
+    })
+})
+
+describe("replace second element in array", () => {
+    test("2 should be replaced with 9", () => {
+        expect(replaceElement([1, 2, 3, 4, 2])).toEqual([1, 9, 3, 4, 9])
     })
 })
