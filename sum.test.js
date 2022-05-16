@@ -1,4 +1,4 @@
-const { sum, returnTargetIdx, replaceElement } = require("./sum")
+const { sum, returnTargetIdx, removeEvenNums } = require("./sum")
 
 // describes can nest n deep
 // .only || .skip
@@ -22,8 +22,11 @@ describe("return last element from list", () => {
     })
 })
 
-describe("replace second element in array", () => {
-    test("2 should be replaced with 9", () => {
-        expect(replaceElement([1, 2, 3, 4, 2])).toEqual([1, 9, 3, 4, 9])
+describe("remove odd and even numbers and zero", () => {
+    test("even numbers should be removed", () => {
+        expect(removeEvenNums([3, 2, 5, 4, 0, 7], "odd")).toEqual([3, 5, 0, 7])
+    })
+    test("odd numbers and zeros should be removed", () => {
+        expect(removeEvenNums([3, 2, 5, 4, 0, 7], "even")).toEqual([2, 4])
     })
 })
