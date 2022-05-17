@@ -1,4 +1,4 @@
-const { sum, returnTargetIdx, removeEvenNums, intersect } = require("./sum")
+const { sum, returnTargetIdx, removeEvenNums, intersect, countStrings } = require("./sum")
 
 // describes can nest n deep
 // .only || .skip
@@ -37,5 +37,11 @@ describe("return array of all intersections", () => {
     })
     test("both contain two 4s and one 7, return [4, 4, 7]", () => {
         expect(intersect([4, 4, 7], [4, 5, 4, 4, 7])).toEqual([4, 4, 7])
+    })
+})
+
+describe("count occurrences of strings", () => {
+    test("1 apples, 2 oranges, 1 fruit", () => {
+        expect(countStrings(["apples", "oranges", "oranges", "fruit"])).toEqual({ apples: 1, oranges: 2, fruit: 1 })
     })
 })
