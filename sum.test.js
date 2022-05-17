@@ -1,4 +1,4 @@
-const { sum, returnTargetIdx, removeEvenNums } = require("./sum")
+const { sum, returnTargetIdx, removeEvenNums, intersect } = require("./sum")
 
 // describes can nest n deep
 // .only || .skip
@@ -28,5 +28,14 @@ describe("remove odd and even numbers and zero", () => {
     })
     test("odd numbers and zeros should be removed", () => {
         expect(removeEvenNums([3, 2, 5, 4, 0, 7], "even")).toEqual([2, 4])
+    })
+})
+
+describe("return array of all intersections", () => {
+    test("each array contains 0 and 7, return [0, 7]", () => {
+        expect(intersect([4, 0, 7], [3, 5, 0, 7])).toEqual([0, 7])
+    })
+    test("both contain two 4s and one 7, return [4, 4, 7]", () => {
+        expect(intersect([4, 4, 7], [4, 5, 4, 4, 7])).toEqual([4, 4, 7])
     })
 })
