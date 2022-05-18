@@ -1,7 +1,7 @@
 function sum(a, b) {
     return a + b
 }
-module.exports = { sum, returnTargetIdx, removeEvenNums, intersect, countStrings }
+module.exports = { sum, returnTargetIdx, removeEvenNums, intersect, countStrings, firstUniqChar }
 
 function returnTargetIdx(arrayOfInts, targetIdx) {
     return arrayOfInts[targetIdx] ? arrayOfInts[targetIdx] : "error"
@@ -46,3 +46,12 @@ function countStrings(arrayOfStrings) {
 }
 
 // is there a way to change the test.jest error messages???
+
+function firstUniqChar(s) {
+    for (let i = 0; i < s.length; i++) {
+        if (s.indexOf(s[i]) === s.lastIndexOf(s[i])) {
+            return s.indexOf(s[i])
+        }
+    }
+    return -1
+}

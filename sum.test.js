@@ -1,4 +1,4 @@
-const { sum, returnTargetIdx, removeEvenNums, intersect, countStrings } = require("./sum")
+const { sum, returnTargetIdx, removeEvenNums, intersect, countStrings, firstUniqChar } = require("./sum")
 
 // describes can nest n deep
 // .only || .skip
@@ -43,5 +43,14 @@ describe("return array of all intersections", () => {
 describe("count occurrences of strings", () => {
     test("1 apples, 2 oranges, 1 fruit", () => {
         expect(countStrings(["apples", "oranges", "oranges", "fruit"])).toEqual({ apples: 1, oranges: 2, fruit: 1 })
+    })
+})
+
+describe("return the index of the first unique character", () => {
+    test("c doesn't repeat, so return its index [4]", () => {
+        expect(firstUniqChar("aabbce")).toEqual(4)
+    })
+    test("no repeating characters, return -1", () => {
+        expect(firstUniqChar("aabbee")).toEqual(-1)
     })
 })
