@@ -1,4 +1,13 @@
-const { sum, returnTargetIdx, removeEvenNums, intersect, countStrings, firstUniqChar } = require("./sum")
+const {
+    sum,
+    returnTargetIdx,
+    removeEvenNums,
+    intersect,
+    countStrings,
+    firstUniqChar,
+    highestWordCount,
+    rearrangeInts,
+} = require("./sum")
 
 // describes can nest n deep
 // .only || .skip
@@ -52,5 +61,29 @@ describe("return the index of the first unique character", () => {
     })
     test("no repeating characters, return -1", () => {
         expect(firstUniqChar("aabbee")).toEqual(-1)
+    })
+})
+
+describe("return the highest word count", () => {
+    test("the longest string has 4 words, return 4", () => {
+        expect(highestWordCount(["aaa", "a gief five", "three two one zero"])).toEqual(4)
+    })
+    test("the longest string has 3 words, return 3", () => {
+        expect(highestWordCount(["aaa", "a bij eke", "five"])).toEqual(3)
+    })
+})
+
+describe("rearrange integers to return highest value", () => {
+    test("rearrange 295 and return 592", () => {
+        expect(rearrangeInts(295)).toEqual(952)
+    })
+    test("rearrange 222 and return 222", () => {
+        expect(rearrangeInts(222)).toEqual(222)
+    })
+    test("rearrange 3 and return 3", () => {
+        expect(rearrangeInts(3)).toEqual(3)
+    })
+    test("rearrange 5001 and return 5100", () => {
+        expect(rearrangeInts(5001)).toEqual(5100)
     })
 })

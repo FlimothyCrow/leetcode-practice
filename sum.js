@@ -1,7 +1,16 @@
 function sum(a, b) {
     return a + b
 }
-module.exports = { sum, returnTargetIdx, removeEvenNums, intersect, countStrings, firstUniqChar }
+module.exports = {
+    sum,
+    rearrangeInts,
+    returnTargetIdx,
+    removeEvenNums,
+    intersect,
+    highestWordCount,
+    countStrings,
+    firstUniqChar,
+}
 
 function returnTargetIdx(arrayOfInts, targetIdx) {
     return arrayOfInts[targetIdx] ? arrayOfInts[targetIdx] : "error"
@@ -54,4 +63,22 @@ function firstUniqChar(s) {
         }
     }
     return -1
+}
+
+function highestWordCount(sentences) {
+    let longest = 0
+    sentences.forEach((sentence) => {
+        let wordCount = sentence.split(" ").length
+        if (wordCount > longest) {
+            longest = wordCount
+        }
+    })
+    return longest
+}
+
+function rearrangeInts(int) {
+    let sortedArray = Array.from(String(int)).sort((a, b) => {
+        return b - a
+    })
+    return Number(sortedArray.join(""))
 }
