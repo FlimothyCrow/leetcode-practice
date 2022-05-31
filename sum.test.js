@@ -7,6 +7,7 @@ const {
     firstUniqChar,
     highestWordCount,
     rearrangeInts,
+    returnSum,
 } = require("./sum")
 
 // describes can nest n deep
@@ -85,5 +86,11 @@ describe("rearrange integers to return highest value", () => {
     })
     test("rearrange 5001 and return 5100", () => {
         expect(rearrangeInts(5001)).toEqual(5100)
+    })
+})
+
+describe("use reduce to sum even numbers", () => {
+    test("2 + 4 = return 6", () => {
+        expect(returnSum([2, 4, 3, 5])).toEqual(6)
     })
 })

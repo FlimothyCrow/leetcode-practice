@@ -10,6 +10,7 @@ module.exports = {
     highestWordCount,
     countStrings,
     firstUniqChar,
+    returnSum,
 }
 
 function returnTargetIdx(arrayOfInts, targetIdx) {
@@ -81,4 +82,10 @@ function rearrangeInts(int) {
         return b - a
     })
     return Number(sortedArray.join(""))
+}
+
+function returnSum(arrayOfInts) {
+    return arrayOfInts.reduce((totalSum, nextInteger) => {
+        return nextInteger % 2 === 0 ? totalSum + nextInteger : totalSum
+    }, 0)
 }
