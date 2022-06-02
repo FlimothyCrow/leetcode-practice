@@ -11,6 +11,8 @@ module.exports = {
     countStrings,
     firstUniqChar,
     returnSum,
+    returnOdds,
+    findOddValues,
 }
 
 function returnTargetIdx(arrayOfInts, targetIdx) {
@@ -85,27 +87,16 @@ function rearrangeInts(int) {
 }
 
 function returnSum(arrayOfInts) {
+    console.log("check test")
     return arrayOfInts.reduce((totalSum, nextInteger) => {
         return nextInteger % 2 === 0 ? totalSum + nextInteger : totalSum
     }, 0)
 }
 
-function cheaperThanTen(arrayOfObjs) {
-    return arrayOfObjs.filter((obj) => obj["price"] < 10)
-    // filter creates []
-    // obj starts as {price: 5}
-    // obj[price] === 5
-    // push {price: 5} to new array
-    // [{price: 5}, ]
-    // loop
-    // obj is now {price: 10}
-    // price !> 10 so nothing happens
-    // obj is now {price: 2}
-    // obj[price] === 2 < 10 true
-    // push {price: 2}
-    // [{price: 5}, {price: 2}]
-    // return [{price: 5}, {price: 2}]
-    // and then we console.log()
+function returnOdds(arrayOfInts) {
+    return arrayOfInts.filter((int) => int % 2 !== 0)
 }
 
-//cheaperThanTen()
+function findOddValues(arrayOfObjs) {
+    return arrayOfObjs.map((obj) => returnOdds(Object.values(obj)))
+}
