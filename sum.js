@@ -1,102 +1,62 @@
-function sum(a, b) {
-    return a + b
-}
 module.exports = {
+    longestCommonPrefix,
+    reverseString,
+    reverseStringOutOfPlace,
+    mockingCase,
     sum,
-    rearrangeInts,
-    returnTargetIdx,
-    removeEvenNums,
-    intersect,
-    highestWordCount,
-    countStrings,
-    firstUniqChar,
-    returnSum,
-    returnOdds,
-    findOddValues,
 }
 
-function returnTargetIdx(arrayOfInts, targetIdx) {
-    return arrayOfInts[targetIdx] ? arrayOfInts[targetIdx] : "error"
+function sum(int0, int1) {
+    return int0 + int1
 }
 
-function removeEvenNums(arrayofInts, checkOddOrEven) {
-    if (checkOddOrEven === "odd") {
-        return arrayofInts.filter((integer) => integer % 2 !== 0 || integer === 0)
-    } else if (checkOddOrEven === "even") {
-        return arrayofInts.filter((integer) => integer % 2 == 0 && integer !== 0)
+function longestCommonPrefix(strs) {
+    let sortedStrs = strs.sort((a, b) => a.length - b.length)
+    let strToReturn = ""
+    if (strs.length === 1) {
+        return strs[0]
     }
-}
-
-function intersect(nums1, nums2) {
-    let counterObject1 = {}
-    let counterObject2 = {}
-    let arrayToReturn = []
-
-    nums1.forEach((num) => {
-        counterObject1[num] ? (counterObject1[num] += 1) : (counterObject1[num] = 1)
-    })
-    nums2.forEach((num) => {
-        counterObject2[num] ? (counterObject2[num] += 1) : (counterObject2[num] = 1)
-    })
-
-    Object.keys(counterObject1).forEach((key) => {
-        if (key in counterObject2) {
-            for (var i = 0; i < Math.min(counterObject1[key], counterObject2[key]); i++) {
-                arrayToReturn.push(parseInt(key))
+    loop1: for (var i = 0; i < sortedStrs[0].length; i++) {
+        let targetChar = sortedStrs[0][i]
+        loop2: for (var k = 1; k < sortedStrs.length; k++) {
+            if (targetChar === sortedStrs[k][i]) {
+                if (k === sortedStrs.length - 1) {
+                    strToReturn += targetChar
+                }
+            } else {
+                return strToReturn
             }
         }
-    })
-    return arrayToReturn
-}
-
-function countStrings(arrayOfStrings) {
-    let counterObject = {}
-    arrayOfStrings.forEach((str) => {
-        counterObject[str] ? (counterObject[str] += 1) : (counterObject[str] = 1)
-    })
-    return counterObject
-}
-
-// is there a way to change the test.jest error messages???
-
-function firstUniqChar(s) {
-    for (let i = 0; i < s.length; i++) {
-        if (s.indexOf(s[i]) === s.lastIndexOf(s[i])) {
-            return s.indexOf(s[i])
-        }
     }
-    return -1
+    return strToReturn
 }
 
-function highestWordCount(sentences) {
-    let longest = 0
-    sentences.forEach((sentence) => {
-        let wordCount = sentence.split(" ").length
-        if (wordCount > longest) {
-            longest = wordCount
-        }
+function reverseString(str) {
+    str = str.split("")
+    let length = str.length
+    for (var i = 0; i < str.length / 2; i++) {
+        let last = str[length - i] // "c" > "abc"
+        str[length - i] = str[i] // str[2] = "a" > "aba"
+        str[i] = last // "c" > "cba"
+    }
+    return str.join("")
+}
+
+function reverseStringOutOfPlace(str) {
+    let orderedString = ""
+    for (var i = 0; i < str.length; i++) {
+        orderedString = str[i] + orderedString
+        //orderedString = replaceCharAtIdx(str, str[i], i)
+    }
+    return orderedString
+}
+
+function mockingCase(str) {
+    let accumString = ""
+    let shouldBeLowerCase = true
+    str.split("").forEach((char) => {
+        shouldBeLowerCase ? (accumString += char.toLowerCase()) : (accumString += char.toUpperCase())
+        shouldBeLowerCase = !shouldBeLowerCase
     })
-    return longest
-}
-
-function rearrangeInts(int) {
-    let sortedArray = Array.from(String(int)).sort((a, b) => {
-        return b - a
-    })
-    return Number(sortedArray.join(""))
-}
-
-function returnSum(arrayOfInts) {
-    console.log("check test")
-    return arrayOfInts.reduce((totalSum, nextInteger) => {
-        return nextInteger % 2 === 0 ? totalSum + nextInteger : totalSum
-    }, 0)
-}
-
-function returnOdds(arrayOfInts) {
-    return arrayOfInts.filter((int) => int % 2 !== 0)
-}
-
-function findOddValues(arrayOfObjs) {
-    return arrayOfObjs.map((obj) => returnOdds(Object.values(obj)))
+    return accumString
 }
