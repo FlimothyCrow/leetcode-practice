@@ -5,6 +5,7 @@ module.exports = {
     mockingCase,
     sum,
     recursiveSum,
+    fib,
 }
 
 function longestCommonPrefix(strs) {
@@ -89,3 +90,27 @@ function sum(arrayOfNums) {
 // remove (shift) arrayOfNums[0]
 // if arrayOfNums has length, return recursiveSum[shorterArray, newAccum]
 // else return accum
+
+function recurseFib(targetInt, seedArray) {
+    let nextNumber = seedArray[seedArray.length - 1] + seedArray[seedArray.length - 2]
+
+    if (nextNumber <= targetInt) {
+        seedArray.push(nextNumber)
+        return recurseFib(targetInt, seedArray)
+    } else {
+        return seedArray
+    }
+}
+
+
+function fib(targetInt) {
+    return recurseFib(targetInt, [0, 1])
+}
+
+// recurseFib needs two pieces of information:
+// the breakpoint (targetInt) test case 8
+// the accumulator (seedArray) will always start as [0, 1]
+// on each recursion it adds [-1] + [-2] and pushes it to the end of newArray
+// recurseFib(targetInt, newArray)
+// once [-1] === targetInt, return the final newArray
+// build in logic for array being up to OR including targetInt so it doesn't have to be a fib number
