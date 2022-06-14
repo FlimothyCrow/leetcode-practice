@@ -1,4 +1,4 @@
-const { longestCommonPrefix, reverseString, reverseStringOutOfPlace, mockingCase } = require("./sum")
+const { longestCommonPrefix, sum, reverseString, reverseStringOutOfPlace, mockingCase } = require("./sum")
 
 // describes can nest n deep
 // .only || .skip
@@ -36,6 +36,12 @@ describe("alternate lower > uppercase", () => {
         expect(mockingCase("abcde")).toBe("aBcDe")
     })
     test("aaa bbb  ccc should be aAa bBb  CcC", () => {
-        expect(mockingCase("aaa bbb  ccc")).toBe("aAa bBb  CcC")
+        expect(mockingCase("aaa bbb  ccc")).toBe("aAa BbB  cCc")
+    })
+})
+
+describe("sum numbers using recursiveSum()", () => {
+    test("[1, 2, 3, 4] returns 10", () => {
+        expect(sum([1, 2, 3, 4])).toEqual(10)
     })
 })

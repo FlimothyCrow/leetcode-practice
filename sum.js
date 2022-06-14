@@ -4,10 +4,7 @@ module.exports = {
     reverseStringOutOfPlace,
     mockingCase,
     sum,
-}
-
-function sum(int0, int1) {
-    return int0 + int1
+    recursiveSum,
 }
 
 function longestCommonPrefix(strs) {
@@ -55,8 +52,40 @@ function mockingCase(str) {
     let accumString = ""
     let shouldBeLowerCase = true
     str.split("").forEach((char) => {
-        shouldBeLowerCase ? (accumString += char.toLowerCase()) : (accumString += char.toUpperCase())
-        shouldBeLowerCase = !shouldBeLowerCase
+        if (char === " ") {
+            accumString += char
+        } else {
+            shouldBeLowerCase ? (accumString += char.toLowerCase()) : (accumString += char.toUpperCase())
+            shouldBeLowerCase = !shouldBeLowerCase
+        }
     })
     return accumString
 }
+
+function recursiveSum(arrayOfNums, accum) {
+    // add next (always 0th) from arrayOfNums to accumulator
+    let newAccum = (accum += arrayOfNums[0])
+    // remove next / 0th from arrayOfNums so it can't be iterated twice
+    arrayOfNums.shift()
+    // if arrayOfNums has remaining ints, recurse the function
+    // return recursiveSum with shortened array and increased accumulate
+    if (arrayOfNums.length) {
+        return recursiveSum(arrayOfNums, newAccum)
+        // if arrayOfNums is shortened to [], return the final accumulate
+    } else {
+        return newAccum
+    }
+}
+
+function sum(arrayOfNums) {
+    return recursiveSum(arrayOfNums, 0)
+    // this wrapper function prevents incorrect accum params being passed
+    // it also allows recursiveSum() to be "called" without being exported / public
+}
+
+// normal recursive solutions use two functions
+
+// add arrayOfNums[0] and accum, that becomes newAccum
+// remove (shift) arrayOfNums[0]
+// if arrayOfNums has length, return recursiveSum[shorterArray, newAccum]
+// else return accum
