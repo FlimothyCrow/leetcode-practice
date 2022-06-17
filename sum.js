@@ -6,6 +6,9 @@ module.exports = {
     sum,
     recursiveSum,
     fib,
+    letterCounter,
+    largerThanFive,
+    factorial,
 }
 
 function longestCommonPrefix(strs) {
@@ -102,7 +105,6 @@ function recurseFib(targetInt, seedArray) {
     }
 }
 
-
 function fib(targetInt) {
     return recurseFib(targetInt, [0, 1])
 }
@@ -114,3 +116,45 @@ function fib(targetInt) {
 // recurseFib(targetInt, newArray)
 // once [-1] === targetInt, return the final newArray
 // build in logic for array being up to OR including targetInt so it doesn't have to be a fib number
+
+function letterCounter(arrayOfArrays) {
+    return arrayOfArrays.reduce((finalAccum, innerArray) => {
+        return (
+            finalAccum +
+            innerArray.reduce((innerAccum, str) => {
+                return innerAccum + str.length
+            }, 0)
+        )
+    }, 0)
+}
+
+function recurseLarger(arrayOfInts, seedArray) {
+    if (arrayOfInts[0]) {
+        if (arrayOfInts[0] > 5) {
+            seedArray.push(arrayOfInts[0])
+            arrayOfInts.shift()
+            return recurseLarger(arrayOfInts, seedArray)
+        } else {
+            arrayOfInts.shift()
+            return recurseLarger(arrayOfInts, seedArray)
+        }
+    } else {
+        return seedArray
+    }
+}
+
+function largerThanFive(arrayOfInts) {
+    return recurseLarger(arrayOfInts, [])
+}
+
+function recurseFactorial(countdown, toReturn) {
+    if (countdown > 1) {
+        return recurseFactorial(countdown - 1, toReturn * countdown)
+    } else {
+        return toReturn
+    }
+}
+
+function factorial(int) {
+    return recurseFactorial(int, 1)
+}

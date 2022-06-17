@@ -1,4 +1,14 @@
-const { longestCommonPrefix, sum, reverseString, reverseStringOutOfPlace, mockingCase, fib } = require("./sum")
+const {
+    longestCommonPrefix,
+    sum,
+    reverseString,
+    letterCounter,
+    reverseStringOutOfPlace,
+    mockingCase,
+    fib,
+    largerThanFive,
+    factorial,
+} = require("./sum")
 
 // describes can nest n deep
 // .only || .skip
@@ -52,5 +62,32 @@ describe("return array of Fibonacci numbers to target num using recurseFib()", (
     })
     test("recurseFib(7) returns [0, 1, 1, 2, 3, 5]", () => {
         expect(fib(7)).toEqual([0, 1, 1, 2, 3, 5])
+    })
+})
+
+describe("take an array of arrays of strings", () => {
+    test("count the accumulation of letters of all arrays", () => {
+        expect(
+            letterCounter([
+                ["a", "a"],
+                ["a", "a"],
+                ["a", "a"],
+            ])
+        ).toEqual(6)
+    })
+})
+
+describe("return array of >5 ints using recurseLarger()", () => {
+    test("return [10, 30]", () => {
+        expect(largerThanFive([1, 10, 30, 2, 5])).toEqual([10, 30])
+    })
+    test("return []", () => {
+        expect(largerThanFive([])).toEqual([])
+    })
+})
+
+describe("calculate factorial using recurseFactorial()", () => {
+    test("4! returns 24", () => {
+        expect(factorial(4)).toEqual(24)
     })
 })
