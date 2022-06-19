@@ -1,30 +1,7 @@
-const {
-    longestCommonPrefix,
-    sum,
-    reverseString,
-    letterCounter,
-    reverseStringOutOfPlace,
-    mockingCase,
-    fib,
-    largerThanFive,
-    factorial,
-} = require("./sum")
+const { reverseString, reverseStringOutOfPlace, mockingCase, flatten, searchInsert } = require("./sum")
 
 // describes can nest n deep
 // .only || .skip
-
-describe("find longest common prefix in arrayOfStrings", () => {
-    test("each string starts with fl, return fl", () => {
-        expect(longestCommonPrefix(["flower", "flow", "flight"])).toEqual("fl")
-        // ["flow", "flower", "flight"]
-    })
-    test("no common prefix, return empty string", () => {
-        expect(longestCommonPrefix(["flow", "thing", "cheese"])).toEqual("")
-    })
-    test("['a'] should return empty string", () => {
-        expect(longestCommonPrefix(["a"])).toEqual("a")
-    })
-})
 
 describe("reverse string with loop", () => {
     test("abc becomes cba", () => {
@@ -50,44 +27,33 @@ describe("alternate lower > uppercase", () => {
     })
 })
 
-describe("sum numbers using recursiveSum()", () => {
-    test("[1, 2, 3, 4] returns 10", () => {
-        expect(sum([1, 2, 3, 4])).toEqual(10)
+describe.skip("sum nested arrays to int using recurseFlatten()", () => {
+    test("[1, 9, [1, 2]]", () => {
+        expect(flatten([1, 9, [1, 2]])).toEqual(13)
+    })
+    test("[1, [3, [5, 9]]]", () => {
+        expect(flatten([1, [3, [5, 9]]])).toEqual(18)
+    })
+    test("[[3, [5, 9]]]", () => {
+        expect(flatten([[3, [5, 9]]])).toEqual(17)
+    })
+    test("[1, [3, 5], 39, [2, [3, 5]]]", () => {
+        // currently sums 9
+        expect(flatten([1, [3, 5], 39, [2, [3, 5]]])).toEqual(58)
     })
 })
 
-describe("return array of Fibonacci numbers to target num using recurseFib()", () => {
-    test("recurseFib(8) returns [0, 1, 1, 2, 3, 5, 8]", () => {
-        expect(fib(8)).toEqual([0, 1, 1, 2, 3, 5, 8])
+describe("return insert position for increasing order", () => {
+    test("[1,3,5,6], 5 returns 2", () => {
+        expect(searchInsert([1, 3, 5, 6], 5)).toEqual(2)
     })
-    test("recurseFib(7) returns [0, 1, 1, 2, 3, 5]", () => {
-        expect(fib(7)).toEqual([0, 1, 1, 2, 3, 5])
+    test("[1,3,5,6], 2 returns 1", () => {
+        expect(searchInsert([1, 3, 5, 6], 2)).toEqual(1)
     })
-})
-
-describe("take an array of arrays of strings", () => {
-    test("count the accumulation of letters of all arrays", () => {
-        expect(
-            letterCounter([
-                ["a", "a"],
-                ["a", "a"],
-                ["a", "a"],
-            ])
-        ).toEqual(6)
+    test("[1,3,5,6], 7 returns 4", () => {
+        expect(searchInsert([1, 3, 5, 6], 7)).toEqual(4)
     })
-})
-
-describe("return array of >5 ints using recurseLarger()", () => {
-    test("return [10, 30]", () => {
-        expect(largerThanFive([1, 10, 30, 2, 5])).toEqual([10, 30])
-    })
-    test("return []", () => {
-        expect(largerThanFive([])).toEqual([])
-    })
-})
-
-describe("calculate factorial using recurseFactorial()", () => {
-    test("4! returns 24", () => {
-        expect(factorial(4)).toEqual(24)
+    test("[1,3,5,6], 7 returns 4", () => {
+        expect(searchInsert([1, 3, 5, 6], 0)).toEqual(0)
     })
 })

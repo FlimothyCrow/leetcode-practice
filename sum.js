@@ -1,35 +1,9 @@
 module.exports = {
-    longestCommonPrefix,
     reverseString,
     reverseStringOutOfPlace,
     mockingCase,
-    sum,
-    recursiveSum,
-    fib,
-    letterCounter,
-    largerThanFive,
-    factorial,
-}
-
-function longestCommonPrefix(strs) {
-    let sortedStrs = strs.sort((a, b) => a.length - b.length)
-    let strToReturn = ""
-    if (strs.length === 1) {
-        return strs[0]
-    }
-    loop1: for (var i = 0; i < sortedStrs[0].length; i++) {
-        let targetChar = sortedStrs[0][i]
-        loop2: for (var k = 1; k < sortedStrs.length; k++) {
-            if (targetChar === sortedStrs[k][i]) {
-                if (k === sortedStrs.length - 1) {
-                    strToReturn += targetChar
-                }
-            } else {
-                return strToReturn
-            }
-        }
-    }
-    return strToReturn
+    flatten,
+    searchInsert,
 }
 
 function reverseString(str) {
@@ -66,27 +40,6 @@ function mockingCase(str) {
     return accumString
 }
 
-function recursiveSum(arrayOfNums, accum) {
-    // add next (always 0th) from arrayOfNums to accumulator
-    let newAccum = (accum += arrayOfNums[0])
-    // remove next / 0th from arrayOfNums so it can't be iterated twice
-    arrayOfNums.shift()
-    // if arrayOfNums has remaining ints, recurse the function
-    // return recursiveSum with shortened array and increased accumulate
-    if (arrayOfNums.length) {
-        return recursiveSum(arrayOfNums, newAccum)
-        // if arrayOfNums is shortened to [], return the final accumulate
-    } else {
-        return newAccum
-    }
-}
-
-function sum(arrayOfNums) {
-    return recursiveSum(arrayOfNums, 0)
-    // this wrapper function prevents incorrect accum params being passed
-    // it also allows recursiveSum() to be "called" without being exported / public
-}
-
 // normal recursive solutions use two functions
 
 // add arrayOfNums[0] and accum, that becomes newAccum
@@ -94,67 +47,42 @@ function sum(arrayOfNums) {
 // if arrayOfNums has length, return recursiveSum[shorterArray, newAccum]
 // else return accum
 
-function recurseFib(targetInt, seedArray) {
-    let nextNumber = seedArray[seedArray.length - 1] + seedArray[seedArray.length - 2]
-
-    if (nextNumber <= targetInt) {
-        seedArray.push(nextNumber)
-        return recurseFib(targetInt, seedArray)
-    } else {
-        return seedArray
-    }
-}
-
-function fib(targetInt) {
-    return recurseFib(targetInt, [0, 1])
-}
-
-// recurseFib needs two pieces of information:
-// the breakpoint (targetInt) test case 8
-// the accumulator (seedArray) will always start as [0, 1]
-// on each recursion it adds [-1] + [-2] and pushes it to the end of newArray
-// recurseFib(targetInt, newArray)
-// once [-1] === targetInt, return the final newArray
-// build in logic for array being up to OR including targetInt so it doesn't have to be a fib number
-
-function letterCounter(arrayOfArrays) {
-    return arrayOfArrays.reduce((finalAccum, innerArray) => {
-        return (
-            finalAccum +
-            innerArray.reduce((innerAccum, str) => {
-                return innerAccum + str.length
-            }, 0)
-        )
-    }, 0)
-}
-
-function recurseLarger(arrayOfInts, seedArray) {
-    if (arrayOfInts[0]) {
-        if (arrayOfInts[0] > 5) {
-            seedArray.push(arrayOfInts[0])
-            arrayOfInts.shift()
-            return recurseLarger(arrayOfInts, seedArray)
+function recurseFlatten(nestedArrays, accum) {
+    let toAdd = 0
+    if (nestedArrays[0]) {
+        if (!Array.isArray(nestedArrays[0])) {
+            toAdd = nestedArrays[0]
+            nestedArrays.shift()
+            return recurseFlatten(nestedArrays, accum + toAdd)
         } else {
-            arrayOfInts.shift()
-            return recurseLarger(arrayOfInts, seedArray)
+            toAdd = nestedArrays[0] // [1, 2]
+            nestedArrays.shift()
+            return recurseFlatten(toAdd, accum)
         }
     } else {
-        return seedArray
+        return accum
     }
 }
 
-function largerThanFive(arrayOfInts) {
-    return recurseLarger(arrayOfInts, [])
+function flatten(nestedArrays) {
+    return recurseFlatten(nestedArrays, 0)
 }
 
-function recurseFactorial(countdown, toReturn) {
-    if (countdown > 1) {
-        return recurseFactorial(countdown - 1, toReturn * countdown)
-    } else {
-        return toReturn
+function searchInsert(nums, target) {
+    for (var i = 0; i < nums.length; i++) {
+        if (nums[i] === target) {
+            return i
+        }
+        if (target < nums[0]) {
+            return 0
+        }
+        if (target > nums[i]) {
+            if (target <= nums[i + 1]) {
+                return i + 1
+            }
+        }
     }
+    return nums.length
 }
 
-function factorial(int) {
-    return recurseFactorial(int, 1)
-}
+// [1, 2, 3, 4, 9] 5
