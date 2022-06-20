@@ -1,4 +1,4 @@
-const { reverseString, reverseStringOutOfPlace, mockingCase, flatten, searchInsert } = require("./sum")
+const { reverseString, reverseStringOutOfPlace, mockingCase, flatten, searchInsert, isPalindrome } = require("./sum")
 
 // describes can nest n deep
 // .only || .skip
@@ -55,5 +55,20 @@ describe("return insert position for increasing order", () => {
     })
     test("[1,3,5,6], 7 returns 4", () => {
         expect(searchInsert([1, 3, 5, 6], 0)).toEqual(0)
+    })
+})
+
+describe("return true is string is palindrome after removing non-alphanumerics and lowercasing", () => {
+    test("abcba returns true", () => {
+        expect(isPalindrome("abcba")).toEqual(true)
+    })
+    test("aaab returns false", () => {
+        expect(isPalindrome("aaab")).toEqual(false)
+    })
+    test("A man, a plan, a canal: Panama returns true", () => {
+        expect(isPalindrome("A man, a plan, a canal: Panama")).toEqual(true)
+    })
+    test("race a car returns false", () => {
+        expect(isPalindrome("race a car")).toEqual(false)
     })
 })
