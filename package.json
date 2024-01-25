@@ -1,16 +1,19 @@
 {
-    "name": "test-env",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
+    "name": "vanilla",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
     "scripts": {
         "test": "vitest",
-        "testWatch": "jest --watch",
-        "list": "echo 'horse'"
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
     },
-    "author": "",
-    "license": "ISC",
     "devDependencies": {
+        "typescript": "^5.2.2",
+        "vite": "^5.0.8"
+    },
+    "dependencies": {
         "vitest": "^1.2.1"
     }
 }
