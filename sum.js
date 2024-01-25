@@ -1,9 +1,4 @@
 module.exports = {
-    reverseString,
-    reverseStringOutOfPlace,
-    mockingCase,
-    flatten,
-    searchInsert,
     isPalindrome,
 }
 

@@ -1,16 +1,16 @@
 {
-  "name": "test-env",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest",
-    "testWatch": "jest --watch",
-    "list": "echo 'horse'"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "jest": "^28.1.0"
-  }
+    "name": "test-env",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "vitest",
+        "testWatch": "jest --watch",
+        "list": "echo 'horse'"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "vitest": "^1.2.1"
+    }
 }
