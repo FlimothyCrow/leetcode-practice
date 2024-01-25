@@ -28,3 +28,21 @@ export function mockingCase(initialStr: string) {
     return accumString
     // abc returns aBc
 }
+
+export function removeDuplicates(nums: number[]) {
+    for (var firstIdx = 0; firstIdx < nums.length; firstIdx++) {
+        let deleteCounter = 0
+        for (var secondIdx = firstIdx + 1; secondIdx < nums.length; secondIdx++) {
+            console.log("firstIdx is " + nums[firstIdx] + " and secondIdx is " + nums[secondIdx])
+            if (nums[firstIdx] == nums[secondIdx]) {
+                deleteCounter++
+                console.log("deleteCounter = " + deleteCounter)
+            }
+        }
+        console.log(`removing ${deleteCounter} at ${secondIdx}`)
+        nums.splice(firstIdx + 1, deleteCounter)
+        console.log(`${nums} new length ${nums.length}`)
+    }
+    return nums.length
+    // could we return the finished splice? it returns final length, might skip the .length
+}
