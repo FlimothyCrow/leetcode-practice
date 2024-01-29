@@ -1,6 +1,6 @@
 // sum.test.js
 import { describe, expect, test } from "vitest"
-import { returnFace, sum, mockingCase, removeDuplicates } from "./sum"
+import { returnFace, sum, mockingCase, removeDuplicates, differenceOfSums } from "./sum"
 
 test("adds 1 + 2 to equal 3", () => {
     expect(sum(1, 2)).toBe(3)
@@ -25,5 +25,14 @@ describe("remove duplicates in place and return new length", () => {
 
     test("[5, 5, 6, 6, 6, 7] modifies in place to [5, 6, 7] and return length 3", () => {
         expect(removeDuplicates([5, 5, 6, 6, 6, 7])).toBe(3)
+    })
+})
+
+describe("returns the difference between m-divisible ints betwen 1-n and non-m-divisible ints between 1-m ", () => {
+    test("[1, 2, 4, 5, 7, 8, 10] - [3, 6, 9] = 19", () => {
+        expect(differenceOfSums(10, 3)).toBe(19)
+    })
+    test("[1, 2, 3, 4, 5] - [] = 15", () => {
+        expect(differenceOfSums(5, 6)).toBe(15)
     })
 })
