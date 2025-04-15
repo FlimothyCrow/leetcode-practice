@@ -43,13 +43,16 @@ describe("returns the difference between m-divisible ints betwen 1-n and non-m-d
 })
 
 describe("returns true if a number is palindromic, else returns false", () => {
-    test("121 should return true", () => {
-        expect(isPalindrome(121)).toBe(true)
+    test("979 should return true", () => {
+        expect(isPalindrome(979)).toBe(true)
     })
-    test("123 should return false", () => {
-        expect(isPalindrome(123)).toBe(false)
+    test("456 should return false", () => {
+        expect(isPalindrome(456)).toBe(false)
     })
-    test("-232 should return false", () => {
-        expect(isPalindrome(-238)).toBe(false)
+    test("456 should return false", () => {
+        expect(isPalindrome(-121)).toBe(false)
+    })
+    test("1221 should return true", () => {
+        expect(isPalindrome(1221)).toBe(true)
     })
 })

@@ -54,7 +54,15 @@ export function differenceOfSums(n: number, m: number) {
 }
 
 export function isPalindrome(x: number): boolean {
-    // throwaway version: clone > break into array > to Int > compare
-    const numAsArray = x.toString().split('');
-    return JSON.stringify(numAsArray) === JSON.stringify(numAsArray.toReversed());
+
+    const xAsString = x.toString(); 
+    const xHalfLength = Math.ceil(xAsString.length / 2);
+    
+    for (let i = 0; i < xHalfLength; i++) {
+        if (xAsString[i] != xAsString[xAsString.length - 1 - i]){
+            return false
+        }
+    }
+
+    return true
 }
