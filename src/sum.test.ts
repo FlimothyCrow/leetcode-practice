@@ -1,6 +1,6 @@
 // sum.test.js
 import { describe, expect, test } from "vitest"
-import { returnFace, sum, mockingCase, removeDuplicates, differenceOfSums } from "./sum"
+import { returnFace, sum, mockingCase, removeDuplicates, differenceOfSums, isPalindrome } from "./sum"
 
 test("adds 1 + 2 to equal 3", () => {
     expect(sum(1, 2)).toBe(3)
@@ -16,6 +16,10 @@ describe("mockingCase tests", () => {
 
     test("abc def ghi should be aBc DeF gHi", () => {
         expect(mockingCase("abc def ghi")).toBe("aBc DeF gHi")
+    })
+
+    test("123", () => {
+        expect(mockingCase("123")).toBe("123")
     })
 })
 describe("remove duplicates in place and return new length", () => {
@@ -34,5 +38,18 @@ describe("returns the difference between m-divisible ints betwen 1-n and non-m-d
     })
     test("[1, 2, 3, 4, 5] - [] = 15", () => {
         expect(differenceOfSums(5, 6)).toBe(15)
+    })
+
+})
+
+describe("returns true if a number is palindromic, else returns false", () => {
+    test("121 should return true", () => {
+        expect(isPalindrome(121)).toBe(true)
+    })
+    test("123 should return false", () => {
+        expect(isPalindrome(123)).toBe(false)
+    })
+    test("-232 should return false", () => {
+        expect(isPalindrome(-238)).toBe(false)
     })
 })

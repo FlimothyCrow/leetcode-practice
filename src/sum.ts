@@ -14,7 +14,6 @@ export function returnFace(card: Card): number {
     return card.face
 }
 
-// comment to test first push
 
 export function mockingCase(initialStr: string) {
     let accumString = ""
@@ -52,4 +51,10 @@ export function differenceOfSums(n: number, m: number) {
         i % m == 0 ? (num1 += i) : (num2 += i)
     }
     return num2 - num1
+}
+
+export function isPalindrome(x: number): boolean {
+    // throwaway version: clone > break into array > to Int > compare
+    const numAsArray = x.toString().split('');
+    return JSON.stringify(numAsArray) === JSON.stringify(numAsArray.toReversed());
 }
