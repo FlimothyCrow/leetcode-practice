@@ -14,6 +14,8 @@ export function returnFace(card: Card): number {
     return card.face
 }
 
+// comment to test first push
+
 export function mockingCase(initialStr: string) {
     let accumString = ""
     let shouldBeLowerCase = true
