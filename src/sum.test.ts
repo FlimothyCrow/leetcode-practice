@@ -8,6 +8,7 @@ import {
     differenceOfSums,
     isPalindrome,
     longestPalindrome,
+    containsDuplicate,
 } from "./sum";
 
 test("adds 1 + 2 to equal 3", () => {
@@ -85,5 +86,17 @@ describe("returns longest palindromic substring", () => {
     });
     test("a should return a", () => {
         expect(longestPalindrome("a")).toBe("a");
+    });
+});
+
+describe("returns true if [nums] contains any duplicates", () => {
+    test("[1, 2, 1, 3] should return true", () => {
+        expect(containsDuplicate([1, 2, 1, 3])).toBe(true);
+    });
+    test("[1, 2, 3] should return false", () => {
+        expect(containsDuplicate([1, 2, 3])).toBe(false);
+    });
+    test("[] should return true", () => {
+        expect(containsDuplicate([])).toBe(false);
     });
 });

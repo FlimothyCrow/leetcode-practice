@@ -94,11 +94,9 @@ export function longestPalindrome(s: string): string {
         for (let k = i + 1; k < s.length; k++) {
             const currentSubstring = s.substring(i, k + 1);
             // print substring
-            console.log(`\n current substring = ${currentSubstring}`);
 
             // check if substring is palindrome
             if (isPalindromeLocal(currentSubstring)) {
-                console.log(`\n ${currentSubstring} is a palindrome`);
                 if (currentSubstring.length > longestSubstring.length) {
                     longestSubstring = currentSubstring;
                 }
@@ -107,4 +105,15 @@ export function longestPalindrome(s: string): string {
     }
 
     return longestSubstring;
+}
+
+export function containsDuplicate(nums: number[]): boolean {
+    for (let i = 0; i < nums.length; i++) {
+        for (let k = i + 1; k < nums.length; k++) {
+            if (nums[i] == nums[k]) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
