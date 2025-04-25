@@ -103,7 +103,7 @@ describe("returns true if [nums] contains any duplicates", () => {
 });
 
 describe("updates target object in array with key:value as args", () => {
-    test("", () => {
+    test("any object with UUID = 238 should have its completed value flipped", () => {
         expect(
             updateTargetObject(
                 [
@@ -115,6 +115,21 @@ describe("updates target object in array with key:value as args", () => {
         ).toStrictEqual([
             { UUID: "545", color: "red", completed: false },
             { UUID: "238", color: "blue", completed: false },
+        ]);
+    });
+
+    test("any object with UUID = 909 should have its completed value flipped", () => {
+        expect(
+            updateTargetObject(
+                [
+                    { UUID: "545", color: "red", completed: false },
+                    { UUID: "238", color: "blue", completed: true },
+                ],
+                "909"
+            )
+        ).toStrictEqual([
+            { UUID: "545", color: "red", completed: false },
+            { UUID: "238", color: "blue", completed: true },
         ]);
     });
 });
