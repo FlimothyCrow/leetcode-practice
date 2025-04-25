@@ -117,3 +117,19 @@ export function containsDuplicate(nums: number[]): boolean {
     }
     return false;
 }
+
+export function updateTargetObject(
+    arrayOfObjects: { UUID: string; color: string; completed: boolean }[],
+    identifier: string
+): { UUID: string; color: string; completed: boolean }[] {
+    return arrayOfObjects.map((obj) => {
+        if (obj.UUID === identifier) {
+            return {
+                ...obj,
+                completed: !obj.completed,
+            };
+        } else {
+            return obj;
+        }
+    });
+}

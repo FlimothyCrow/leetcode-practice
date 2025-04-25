@@ -9,6 +9,7 @@ import {
     isPalindrome,
     longestPalindrome,
     containsDuplicate,
+    updateTargetObject,
 } from "./sum";
 
 test("adds 1 + 2 to equal 3", () => {
@@ -98,5 +99,22 @@ describe("returns true if [nums] contains any duplicates", () => {
     });
     test("[] should return true", () => {
         expect(containsDuplicate([])).toBe(false);
+    });
+});
+
+describe("updates target object in array with key:value as args", () => {
+    test("", () => {
+        expect(
+            updateTargetObject(
+                [
+                    { UUID: "545", color: "red", completed: false },
+                    { UUID: "238", color: "blue", completed: true },
+                ],
+                "238"
+            )
+        ).toStrictEqual([
+            { UUID: "545", color: "red", completed: false },
+            { UUID: "238", color: "blue", completed: false },
+        ]);
     });
 });
