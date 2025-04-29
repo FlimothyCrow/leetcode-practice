@@ -136,7 +136,7 @@ export function updateTargetObject(
 
 type Task = {
     UUID: string;
-    color: string;
+    title: string;
     completed: boolean;
 };
 
