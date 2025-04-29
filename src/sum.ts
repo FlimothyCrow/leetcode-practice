@@ -133,3 +133,30 @@ export function updateTargetObject(
         }
     });
 }
+
+type Task = {
+    UUID: string;
+    color: string;
+    completed: boolean;
+};
+
+export function sortTaskArray<T extends Task, K extends keyof T>(
+    arrayOfObjects: T[],
+    sorter: K
+): T[] {
+    return arrayOfObjects.toSorted((a, b) => {
+        const valueA = a[sorter];
+        const valueB = b[sorter];
+        if (sorter == "completed") {
+            if (valueA < valueB) return -1;
+            if (valueA > valueB) return 1;
+        }
+
+        const nameA = String(valueA).toUpperCase();
+        const nameB = String(valueB).toUpperCase();
+
+        if (nameA < nameB) return -1;
+        if (nameA > nameB) return 1;
+        return 0;
+    });
+}

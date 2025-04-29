@@ -10,6 +10,7 @@ import {
     longestPalindrome,
     containsDuplicate,
     updateTargetObject,
+    sortTaskArray,
 } from "./sum";
 
 test("adds 1 + 2 to equal 3", () => {
@@ -129,6 +130,35 @@ describe("updates target object in array with key:value as args", () => {
             )
         ).toStrictEqual([
             { UUID: "545", color: "red", completed: false },
+            { UUID: "238", color: "blue", completed: true },
+        ]);
+    });
+});
+
+describe("array of objects is sorted by given key", () => {
+    let arrayOfTasks = [
+        { UUID: "238", color: "blue", completed: true },
+        { UUID: "545", color: "red", completed: false },
+        { UUID: "333", color: "green", completed: false },
+    ];
+    test("new array should be sorted ascending by color", () => {
+        expect(sortTaskArray(arrayOfTasks, "color")).toStrictEqual([
+            { UUID: "238", color: "blue", completed: true },
+            { UUID: "333", color: "green", completed: false },
+            { UUID: "545", color: "red", completed: false },
+        ]);
+    });
+    test("new array should be sorted ascending by UUID", () => {
+        expect(sortTaskArray(arrayOfTasks, "UUID")).toStrictEqual([
+            { UUID: "238", color: "blue", completed: true },
+            { UUID: "333", color: "green", completed: false },
+            { UUID: "545", color: "red", completed: false },
+        ]);
+    });
+    test("new array should be sorted ascending by completed", () => {
+        expect(sortTaskArray(arrayOfTasks, "completed")).toStrictEqual([
+            { UUID: "545", color: "red", completed: false },
+            { UUID: "333", color: "green", completed: false },
             { UUID: "238", color: "blue", completed: true },
         ]);
     });
