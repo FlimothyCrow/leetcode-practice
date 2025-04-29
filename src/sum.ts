@@ -142,21 +142,23 @@ type Task = {
 
 export function sortTaskArray<T extends Task, K extends keyof T>(
     arrayOfObjects: T[],
-    sorter: K
+    sorter: K,
+    ascending: boolean
 ): T[] {
     return arrayOfObjects.toSorted((a, b) => {
         const valueA = a[sorter];
         const valueB = b[sorter];
-        if (sorter == "completed") {
-            if (valueA < valueB) return -1;
-            if (valueA > valueB) return 1;
-        }
 
         const nameA = String(valueA).toUpperCase();
         const nameB = String(valueB).toUpperCase();
+        if (ascending) {
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1;
+        } else {
+            if (nameA < nameB) return 1;
+            if (nameA > nameB) return -1;
+        }
 
-        if (nameA < nameB) return -1;
-        if (nameA > nameB) return 1;
         return 0;
     });
 }

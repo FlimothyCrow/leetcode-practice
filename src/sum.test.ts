@@ -135,31 +135,52 @@ describe("updates target object in array with key:value as args", () => {
     });
 });
 
-describe("array of objects is sorted by given key", () => {
+describe("array of objects is sorted by given key and order", () => {
     let arrayOfTasks = [
         { UUID: "238", color: "blue", completed: true },
         { UUID: "545", color: "red", completed: false },
         { UUID: "333", color: "green", completed: false },
     ];
     test("new array should be sorted ascending by color", () => {
-        expect(sortTaskArray(arrayOfTasks, "color")).toStrictEqual([
+        expect(sortTaskArray(arrayOfTasks, "color", true)).toStrictEqual([
+            { UUID: "238", color: "blue", completed: true },
+            { UUID: "333", color: "green", completed: false },
+            { UUID: "545", color: "red", completed: false },
+        ]);
+    });
+    test("new array should be sorted descending by color", () => {
+        expect(sortTaskArray(arrayOfTasks, "color", false)).toStrictEqual([
+            { UUID: "545", color: "red", completed: false },
+            { UUID: "333", color: "green", completed: false },
+            { UUID: "238", color: "blue", completed: true },
+        ]);
+    });
+    test("new array should be sorted ascending by UUID", () => {
+        expect(sortTaskArray(arrayOfTasks, "UUID", true)).toStrictEqual([
             { UUID: "238", color: "blue", completed: true },
             { UUID: "333", color: "green", completed: false },
             { UUID: "545", color: "red", completed: false },
         ]);
     });
     test("new array should be sorted ascending by UUID", () => {
-        expect(sortTaskArray(arrayOfTasks, "UUID")).toStrictEqual([
-            { UUID: "238", color: "blue", completed: true },
-            { UUID: "333", color: "green", completed: false },
+        expect(sortTaskArray(arrayOfTasks, "UUID", false)).toStrictEqual([
             { UUID: "545", color: "red", completed: false },
+            { UUID: "333", color: "green", completed: false },
+            { UUID: "238", color: "blue", completed: true },
         ]);
     });
     test("new array should be sorted ascending by completed", () => {
-        expect(sortTaskArray(arrayOfTasks, "completed")).toStrictEqual([
+        expect(sortTaskArray(arrayOfTasks, "completed", true)).toStrictEqual([
             { UUID: "545", color: "red", completed: false },
             { UUID: "333", color: "green", completed: false },
             { UUID: "238", color: "blue", completed: true },
+        ]);
+    });
+    test("new array should be sorted ascending by completed", () => {
+        expect(sortTaskArray(arrayOfTasks, "completed", false)).toStrictEqual([
+            { UUID: "238", color: "blue", completed: true },
+            { UUID: "545", color: "red", completed: false },
+            { UUID: "333", color: "green", completed: false },
         ]);
     });
 });
