@@ -11,6 +11,7 @@ import {
     containsDuplicate,
     updateTargetObject,
     sortTaskArray,
+    missingNumber,
 } from "./sum";
 
 test("adds 1 + 2 to equal 3", () => {
@@ -184,3 +185,17 @@ describe("array of objects is sorted by given key and order", () => {
         ]);
     });
 });
+
+describe("returns missing number from range in array, 0 > n", () => {
+    test("[0, 1, 3, 4] should return 2", () => {
+        expect(missingNumber([0, 3, 4, 1])).toBe(2);
+    });
+    test("[1, 2, 3, 4] should return 2", () => {
+        expect(missingNumber([1, 4, 2, 3])).toBe(0);
+    });
+    test("[0, 1] should return 2", () => {
+        expect(missingNumber([0, 1])).toBe(2);
+    });
+});
+// 0, 1, 3, 4
+// 0, 1, 2, 3, 4
