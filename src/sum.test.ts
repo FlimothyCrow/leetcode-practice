@@ -6,7 +6,7 @@ import {
     mockingCase,
     updateTargetObject,
     sortTaskArray,
-    missingNumber,
+    fizzBuzz,
 } from "./sum";
 
 test("adds 1 + 2 to equal 3", () => {
@@ -110,4 +110,26 @@ describe("array of objects is sorted by given key and order", () => {
             { UUID: "333", title: "green", completed: false },
         ]);
     });
+});
+
+test("return array of strings starting from 1 > n with fizzBuzz logic", () => {
+    expect(fizzBuzz(3)).toEqual(["1", "2", "Fizz"]);
+    expect(fizzBuzz(6)).toEqual(["1", "2", "Fizz", "4", "Buzz", "Fizz"]);
+    expect(fizzBuzz(15)).toEqual([
+        "1",
+        "2",
+        "Fizz",
+        "4",
+        "Buzz",
+        "Fizz",
+        "7",
+        "8",
+        "Fizz",
+        "Buzz",
+        "11",
+        "Fizz",
+        "13",
+        "14",
+        "FizzBuzz",
+    ]);
 });

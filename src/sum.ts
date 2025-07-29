@@ -172,3 +172,17 @@ export function missingNumber(nums: number[]): number {
     }
     return expectedSum - actualSum;
 }
+
+export function fizzBuzz(n: number): string[] {
+    let arrayOfStrings = [];
+    for (let i = 1; i <= n; i++) {
+        if (i % 15 == 0) {
+            arrayOfStrings.push("FizzBuzz");
+        } else if (i % 5 == 0) {
+            arrayOfStrings.push("Buzz");
+        } else if (i % 3 == 0) {
+            arrayOfStrings.push("Fizz");
+        } else arrayOfStrings.push(i.toString());
+    }
+    return arrayOfStrings;
+}
